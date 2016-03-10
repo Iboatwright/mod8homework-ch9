@@ -53,6 +53,7 @@ def main():
     # Display results.
     display_results(yearlyTotal, avgMonthly, lowestMonth, highestMonth,
                     monthsByRainfall, rainTable)
+    return None
 
 
 # Displays an introduction to the program and describes what it does.
@@ -91,6 +92,7 @@ def calc_average(x, xTotal, precision=2, percent=False):
 def merge_sort(first, second):
     return sorted(zip(first, second))
 
+
 # Takes a set of headers, a merged parallel array and optionally a format
 #   string and returns a print friendly string.
 def tablefy(headers,data,design='{: >9}{:^6} | {:^8} |  {:<11}\n'):
@@ -99,6 +101,7 @@ def tablefy(headers,data,design='{: >9}{:^6} | {:^8} |  {:<11}\n'):
     body = ''.join([design.format('', i+1, j[0], j[1].capitalize())
                     for i, j in enumerate(data)])
     return '{}{}{}'.format(head, division, body)
+
 
 # display_results is passed values used in print statements to display
 #  the results of the program to the user.
@@ -110,6 +113,7 @@ def display_results(total, avg, least, most, ordered, table):
     print('The month with the most rain was: {}'.format(most.capitalize()))
     print('The months in order of least to most rain are:')
     print(table)
+    return None
 
 
 # Start the program.
