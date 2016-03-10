@@ -1,0 +1,90 @@
+Chapter 9 Programming Exercise 3. Rainfall Program Modification
+Modify the Rainfall Statistics program from Chapter 8 PE 3.  The original
+    program lets the user enter the total rainfall for each
+    month into an array. The program calculates and displays the
+    total rainfall for the year, the average monthly rainfall, and the
+    months with the highest and lowest amounts.  Enhance the program so it
+    sorts the array in ascending order and displays the values it contains.
+
+Pseudocode
+----------
+Module main()
+    // Local variables
+    Constant String MONTHS = ('january', 'february', 'march', 'april', 'may',
+                              'june', 'july', 'august', 'september',
+                              'october', 'november', 'december')
+    Declare Real rainfall[12]
+    Declare Real yearlyTotal = 0.0
+    Declare Real avgMonthly = 0.0
+    Declare String lowestMonth = ''
+    Declare String highestMonth = ''
+    Declare Tuples monthsByRainfall[12]
+
+    // Display intro to user.
+     Call fluffy_intro()
+
+     // Have the user enter the rainfall amount for each month.
+     Call get_rainfall(MONTHS, rainfall)
+
+     // Calculate yearly rainfall total.
+     Set yearlyTotal = sum(rainfall)
+
+     // Calculate average monthly rainfall.
+     Set avgMonthly = calc_average(yearlyTotal, 12)
+
+     // Get month with the least amount of rain.
+     Set lowestMonth = merge_sort(rainfall, MONTHS)[0][1]
+
+     // Get month with the highest amount of rain.
+     Set highestMonth = merge_sort(rainfall, MONTHS)[-1][1]
+
+     // Display the results.
+     Call display_results(yearlyTotal, avgMonthly, lowestMonth, highestMonth)
+
+End Module
+
+
+// Displays an introduction to the program and describes what it does.
+Module fluffy_intro()
+    Display 'Welcome to the Rainfall Statistics program.'
+    Display 'This program has you enter the total rainfall for each month.'
+    Display 'It then displays the total rainfall for the year, the monthly'
+    Display 'average, and the months with the highest and lowest rainfall'
+    Display 'amounts.'
+End Module
+
+
+// Iterates through the list of months.  Each iteration has the user input
+//  the rainfall for that month.  The value is assigned to the rainfall array
+//  with the same index as that month.
+Module get_rainfall(String Ref MONTHS, Real Ref rainfall[12])
+    Declare Integer counter = 0
+    For month In MONTHS Do
+        Display 'Please enter the rainfall for the month of ', month
+        Input rainfall[counter]
+        counter = counter + 1
+    End For
+End Module
+
+
+// Returns the total divided by the count.
+Function calc_average(Real total, Integer count)
+	Return total / count
+End Function
+
+
+// Sorts two arrays and returns a list of tuple pairs.  The arrays are
+//  sorted by the first parameter in ascending order.
+Function merge_sort(first, second)
+    Return sorted(zip(first, second))
+End Function
+
+
+// display_results is passed values used in print statements to display
+//  the results of the program to the user.
+Module display_results(yearlyTotal, avgMonthly, lowestMonth, highestMonth)
+    Display 'The total rainfall for the year is: ', yearlyTotal
+    Display 'The average monthly rainfall is: ', avgMonthly
+    Display 'The month with the least rainfall was: ', lowestMonth
+    Display 'The month with the most rainfall was: ', highestMonth
+End Module
