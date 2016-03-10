@@ -48,7 +48,7 @@ def main():
     monthsByRainfall = merge_sort(rainfall, MONTHS)
 
     # Get the string to display the sorted array.
-    rainTable = tablefy(HEADERS,monthsByRainfall)
+    rainTable = tablefy(HEADERS, monthsByRainfall)
 
     # Display results.
     display_results(yearlyTotal, avgMonthly, lowestMonth, highestMonth,

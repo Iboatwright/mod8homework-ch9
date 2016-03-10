@@ -80,6 +80,24 @@ Function merge_sort(first, second)
 End Function
 
 
+// Takes an array of headers, a two-dimensional array of data and a format
+//  design string.  The headers and data arrays are joined in a single string
+//  variable using the design for print structure.  The completed string
+//  variable is then returned to the calling module.
+Function tablefy(String headers[3], String data[12][2], String design)
+    tempString = ''
+
+    // Expand the headers into the design string and append to tempString.
+    tempString += design.format(*headers)
+
+    // Loop through data and append each iteration to tempString.
+    For cell In data Do
+        tempString += design.format(*cell)
+    End For
+    Return tempString
+End Function
+
+
 // display_results is passed values used in print statements to display
 //  the results of the program to the user.
 Module display_results(yearlyTotal, avgMonthly, lowestMonth, highestMonth)
