@@ -9,16 +9,19 @@ Modify the Rainfall Statistics program from Chapter 8 PE 3.  The original
 Pseudocode
 ----------
 Module main()
-    // Local variables
+    // Local constants
     Constant String MONTHS = ('january', 'february', 'march', 'april', 'may',
                               'june', 'july', 'august', 'september',
                               'october', 'november', 'december')
+    Constant String HEADERS = ('Rainfall', 'Months')
+
+    // Local variables
     Declare Real rainfall[12]
     Declare Real yearlyTotal = 0.0
     Declare Real avgMonthly = 0.0
-    Declare String lowestMonth = ''
-    Declare String highestMonth = ''
     Declare Tuples monthsByRainfall[12]
+    Declare String monthlyRain[2][12]
+    Declare rainTable = ''
 
     // Display intro to user.
      Call fluffy_intro()
@@ -32,14 +35,16 @@ Module main()
      // Calculate average monthly rainfall.
      Set avgMonthly = calc_average(yearlyTotal, 12)
 
-     // Get month with the least amount of rain.
-     Set lowestMonth = merge_sort(rainfall, MONTHS)[0][1]
+     // Get a merged array sorted by rainfall.
+     Set monthlyRain = merge_sort(rainfall, MONTHS)
 
-     // Get month with the highest amount of rain.
-     Set highestMonth = merge_sort(rainfall, MONTHS)[-1][1]
+     // Create the print friendly rainfall array in ascending order.
+     Set rainTable = tablefy(HEADERS, monthlyRain, '{0} | {1}')
 
-     // Display the results.
-     Call display_results(yearlyTotal, avgMonthly, lowestMonth, highestMonth)
+     // Display the results. monthlyRain[0][1] and [-1][1] are the lowest
+     //     and highest rainfall month names.
+     Call display_results(yearlyTotal, avgMonthly, monthlyRain[0][1],
+                          monthlyRain[-1][1], rainTable)
 
 End Module
 
@@ -100,9 +105,11 @@ End Function
 
 // display_results is passed values used in print statements to display
 //  the results of the program to the user.
-Module display_results(yearlyTotal, avgMonthly, lowestMonth, highestMonth)
+Module display_results(yearlyTotal, avgMonthly, lowestMonth, highestMonth,
+                       table)
     Display 'The total rainfall for the year is: ', yearlyTotal
     Display 'The average monthly rainfall is: ', avgMonthly
     Display 'The month with the least rainfall was: ', lowestMonth
     Display 'The month with the most rainfall was: ', highestMonth
+    Display table
 End Module

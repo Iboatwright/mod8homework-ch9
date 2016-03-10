@@ -38,14 +38,14 @@ def main():
     # Calculate average monthly rainfall.
     avgMonthly = calc_average(yearlyTotal, 12)
 
-    # Get month with the least amount of rain.
-    lowestMonth = merge_sort(rainfall, MONTHS)[0][1]
-
-    # Get month with the highest amount of rain.
-    highestMonth = merge_sort(rainfall, MONTHS)[-1][1]
-
     # Get an array of (rainfall, month) tuples sorted in ascending order
     monthsByRainfall = merge_sort(rainfall, MONTHS)
+
+    # Get month with the least amount of rain.
+    lowestMonth = monthsByRainfall[0][1]
+
+    # Get month with the highest amount of rain.
+    highestMonth = monthsByRainfall[-1][1]
 
     # Get the string to display the sorted array.
     rainTable = tablefy(HEADERS, monthsByRainfall)
